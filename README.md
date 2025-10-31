@@ -13,11 +13,9 @@ FairRecAssessment is a reproducible and extensible benchmarking toolkit built up
 ## Requirements
 You can download the requirements by using the requirements.txt file.
 ```
-python>=3.7.0
-recbole>=1.0.1
-numpy>=1.20.3
-torch>=1.11.0
-tqdm>=4.62.3
+git clone https://github.com/ITU-ILAP/Fair-Recommender-Assessment-Tool.git
+cd Fair-Recommender-Assessment-Tool
+pip install -r requirements.txt
 ```
 
 ## Quick-Start
@@ -25,7 +23,7 @@ tqdm>=4.62.3
 With the source code, you can use the provided script to run multiple recommender models under the same setup:
 
 ```
-python run_compare.py
+python new_run_compare.py
 ```
 If you want to run the regression analysis using the recommender model results to understand the significance of the features:
 ```

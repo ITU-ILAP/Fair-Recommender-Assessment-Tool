@@ -1,6 +1,6 @@
-# FairRecEval: A Benchmarking Framework for Fairness-Aware Recommender Systems
+# FairRecAssessment: Fair Assessment of Fair Recommender Systems: An Experimental Framework on Model and Data Characteristics
 
-FairRecEval is a reproducible and extensible benchmarking toolkit built upon [RecBole](https://recbole.io), designed to evaluate and compare fairness-aware recommendation models under a unified framework.
+FairRecAssessment is a reproducible and extensible benchmarking toolkit built upon [RecBole](https://recbole.io), designed to evaluate and compare fairness-aware recommendation models under a unified framework.
 
 ## Highlights
 
@@ -11,7 +11,7 @@ FairRecEval is a reproducible and extensible benchmarking toolkit built upon [Re
 
 
 ## Requirements
-
+You can download the requirements by using the requirements.txt file.
 ```
 python>=3.7.0
 recbole>=1.0.1

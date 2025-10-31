@@ -31,7 +31,74 @@ If you want to run the regression analysis using the recommender model results t
 ```
 python ./evaluation/regression.py
 ```
+## Detailed Implementations
 
+1. **calculate_stats.py**
+
+This script computes comprehensive statistical summaries for recommendation datasets used in fairness-aware recommender system research.
+It analyzes multiple data subsets and extracts key user–item interaction and fairness-related statistics.
+Usage
+```
+python calculate_statst.py
+```
+You can modify the parameters inside the script:
+```
+base_path = "dataset_v2/ml-1M"
+dataset_name = "ml1m"
+user_file = "dataset_v2/ml-1M/ml-1M.user"
+sensitive_col = "gender:float"
+output_file = "stats/stats_ml1m_gender.csv"
+subsets = ["URM_subsets_filtered"]
+```
+
+Running the script generates a file such as:
+```
+stats/stats_ml1m_gender.csv
+```
+
+2. **build_df_regression.ipynb** (dataset builder)
+
+This notebook merges model evaluation results (fairness and accuracy metrics) with data characteristics (from the stats files) to produce the df_regression.csv file, which serves as the input for regression.py.
+
+3. **regression.py**
+
+This script runs the regression analyses used in the paper’s RQ1–RQ2:
+- RQ1 (Fairness-focused): Explains which data characteristics (and group indicators) are associated with each fairness metric.
+- RQ2 (Accuracy-focused): Explains which data characteristics are associated with accuracy metrics.
+It supports model-based slicing (per model) or pooled analysis across all models.
+Usage
+```
+python regression.py
+```
+
+4. **regression_analysis.ipynb**
+
+This notebook analyzes the significance and effect directions of features produced from df_regression.csv under different scenarios (per-model, pooled, per sensitive feature). It complements the OLS outputs by ranking influential variables and visualizing fairness–accuracy relationships.
+
+🔍 What it does
+
+- Loads df_regression.csv (pre-built panel with subsets × models × metrics × data characteristics).
+
+- Drops selected fairness metrics and data characteristics (configurable lists).
+
+- If model_based=True, iterates over model_list = ["NFCF", "FOCF", "PFCN_MLP"] and:
+
+  - Runs OLS for each fairness metric (RQ1).
+
+  - Runs OLS for each accuracy metric (RQ2).
+
+  - Prints OLS summaries and concatenates results.
+
+- If model_based=False, runs the same analyses on the pooled data.
+
+Configuration (inside the script)
+
+- model_list = ["NFCF", "FOCF", "PFCN_MLP"]
+
+- model_based = True → per-model analiz 
+
+- dropped_fairness_measures, dropped_dc_08, dropped_dc_07 → which metrics/data characteristics will be excluded
+  
 ## Implement Models
 
 We list the models that we have implemented up to now:

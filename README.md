@@ -37,7 +37,7 @@ This script computes comprehensive statistical summaries for recommendation data
 It analyzes multiple data subsets and extracts key user–item interaction and fairness-related statistics.
 Usage
 ```
-python calculate_statst.py
+python calculate_stats.py
 ```
 You can modify the parameters inside the script:
 ```
